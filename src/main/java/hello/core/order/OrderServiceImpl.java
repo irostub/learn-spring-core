@@ -6,10 +6,12 @@ import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
     //private final MemberRepository memberRepository = new MemoryMemberRepository();
@@ -18,11 +20,13 @@ public class OrderServiceImpl implements OrderService {
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy; //DIP를 지키긴 했다. 근데 구현이 없으므로 당연히 NPE
 
-    @Autowired
+    /* lombok 을 사용해 @RequiredArgsConstructor를 사용하므로 자동으로 final이 붙어있는 맴버변수에 대해 생성자를 만들어준다.
+        그러므로 더 이상 유일한 한개의 생성자는 필요없다.
+        @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
-    }
+    }*/
 
 /* 의존관계 수정자 주입 방법
     @Autowired
